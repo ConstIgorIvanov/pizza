@@ -9,15 +9,25 @@
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: 645px) {
+    @media (max-width: 1060px) {
       justify-content: center;
+      .header__logo {
+        p {
+          display: none;
+        }
+      }
+    }
+    @media (max-width: 860px) {
       .header__logo {
         h1 {
           display: none;
         }
-        p {
-          display: none;
-        }
+      }
+    }
+    @media (max-width: 720px) {
+      input {
+        position: absolute;
+        top: 130px;
       }
     }
   }

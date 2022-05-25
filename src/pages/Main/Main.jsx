@@ -5,17 +5,29 @@ import Sort from '../../components/Sort';
 import PizzaBlock from '../../components/PizzaBlock';
 import Skeleton from '../../components/PizzaBlock/Skeleton';
 
+import { useContext } from '../../hook/useContext';
+
 const Main = () => {
+  const { searchValue } = useContext();
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  //category
+
   const [categoryId, setCategoryId] = React.useState(0);
 
-  //sort
   const [sortType, setSortType] = React.useState({
     name: 'популярности',
     sort: 'rating',
   });
+
+  React.useEffect(() => {
+    setIsLoading(true);
+    fetch(`https://628b8636667aea3a3e311bce.mockapi.io/items?search=${searchValue}`)
+      .then((res) => res.json())
+      .then((arr) => {
+        setItems(arr);
+        setIsLoading(false);
+      });
+  }, [searchValue]);
 
   React.useEffect(() => {
     setIsLoading(true);
