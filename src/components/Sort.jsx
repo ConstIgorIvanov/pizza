@@ -4,12 +4,12 @@ function Sort({ value, onClickSortType }) {
   const [open, setOpen] = React.useState(false);
 
   const sort = [
-    { name: 'популярности (ASC)', sort: 'rating' },
-    { name: 'популярности (DESC)', sort: '-rating' },
-    { name: 'цене (ASC)', sort: 'price' },
-    { name: 'цене (DESC)', sort: '-price' },
-    { name: 'алфавиту (ASC)', sort: 'title' },
-    { name: 'алфавиту (DESC)', sort: '-title' },
+    { name: 'популярности (ASC)', sortProperty: 'rating' },
+    { name: 'популярности (DESC)', sortProperty: '-rating' },
+    { name: 'цене (ASC)', sortProperty: 'price' },
+    { name: 'цене (DESC)', sortProperty: '-price' },
+    { name: 'алфавиту (ASC)', sortProperty: 'title' },
+    { name: 'алфавиту (DESC)', sortProperty: '-title' },
   ];
 
   const onClickPoputItem = (i) => {
@@ -41,7 +41,7 @@ function Sort({ value, onClickSortType }) {
               <li
                 key={index}
                 onClick={() => onClickPoputItem(obj)}
-                className={value.sort === obj.sort ? 'active' : ''}>
+                className={value.sort === obj.sortProperty ? 'active' : ''}>
                 {obj.name}
               </li>
             ))}
