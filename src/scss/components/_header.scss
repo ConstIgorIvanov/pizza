@@ -3,7 +3,9 @@
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
-
+  @media (max-width: 720px) {
+    border-bottom: none;
+  }
   .container {
     display: flex;
     align-items: center;

@@ -1,8 +1,30 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-function PizzaBlock({ title, price, imageUrl, sizes, types }) {
+import { selectCartItemById } from '../../redux/cart/selectors';
+import { addItem } from '../../redux/cart/slice';
+function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
+
+  const dispatch = useDispatch();
+  const cartItem = useSelector(selectCartItemById(id));
+
+  const addedCount = cartItem ? cartItem.count : 0;
+
+  const addCart = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      sizes: sizes[activeSize],
+      types: typeNames[activeType],
+      count: 0,
+    };
+    dispatch(addItem(item));
+  };
+
   const typeNames = ['тонкое', 'традиционное'];
   return (
     <div className="pizza-block-wrapper">
@@ -31,7 +53,7 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
             ))}
           </ul>
         </div>
-        <div className="pizza-block__bottom">
+        <div className="pizza-block__bottom" onClick={addCart}>
           <div className="pizza-block__price">от {price} ₽</div>
           <button className="button button--outline button--add">
             <svg
@@ -46,8 +68,7 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
               />
             </svg>
             <span>Добавить</span>
-
-            <i>0</i>
+            {addedCount > 0 && <i>{addedCount}</i>}
           </button>
         </div>
       </div>

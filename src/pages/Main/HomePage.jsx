@@ -40,11 +40,11 @@ const Main = () => {
         currentPage,
         category,
         sortBy,
-
+        searchValue,
         order,
       }),
     );
-  }, [currentPage, categoryId, sortType]);
+  }, [currentPage, categoryId, sortType, searchValue]);
 
   const pizzas = items
     .filter((item) => {

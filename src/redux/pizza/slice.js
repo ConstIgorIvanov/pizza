@@ -10,7 +10,7 @@ export const getPizzas = createAsyncThunk(
   'pizzas/getPizzas',
   async (obj, { rejectWithValue, dispatch }) => {
     const res = await axios.get(
-      `https://628b8636667aea3a3e311bce.mockapi.io/items?page=${obj.currentPage}&limit=4&category=${obj.category}&sortBy=${obj.sortBy}&order=${obj.order}`,
+      `https://628b8636667aea3a3e311bce.mockapi.io/items?page=${obj.currentPage}&limit=4&category=${obj.category}&sortBy=${obj.sortBy}&order=${obj.order}&search=${obj.searchValue}`,
     );
     dispatch(setPizzas(res.data));
   },
