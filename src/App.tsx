@@ -13,9 +13,9 @@ const App: React.FC = () => {
   return (
     <ContexProvider>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/pizza" element={<Layout />}>
           <Route index element={<HomePage />}></Route>
-          <Route path="/cart" element={<CartPage />}></Route>
+          <Route path="cart" element={<CartPage />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
