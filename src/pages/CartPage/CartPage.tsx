@@ -1,8 +1,6 @@
-import React from 'react';
-
 import Cart from '../../components/Cart/Cart';
 
-const CartPage = () => {
+const CartPage: React.FC = () => {
   return (
     <div className="content">
       <div className="container container--cart">

@@ -1,7 +1,13 @@
 import React from 'react';
 
-function Sort({ value, onClickSortType }) {
-  const [open, setOpen] = React.useState(false);
+import { SortType } from '../redux/filter/types';
+
+interface SortProps {
+  sortType: SortType;
+  onClickSortType: (sort: SortType) => void;
+}
+const Sort: React.FC<SortProps> = ({ sortType, onClickSortType }) => {
+  const [open, setOpen] = React.useState<boolean>(false);
 
   const sort = [
     { name: 'популярности (ASC)', sortProperty: 'rating' },
@@ -12,8 +18,8 @@ function Sort({ value, onClickSortType }) {
     { name: 'алфавиту (DESC)', sortProperty: '-title' },
   ];
 
-  const onClickPoputItem = (i) => {
-    onClickSortType(i);
+  const onClickPoputItem = (sort: SortType) => {
+    onClickSortType(sort);
     setOpen(false);
   };
 
@@ -32,7 +38,7 @@ function Sort({ value, onClickSortType }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen(!open)}>{value.name}</span>
+        <span onClick={() => setOpen(!open)}>{sortType.name}</span>
       </div>
       {open && (
         <div className="sort__popup">
@@ -41,7 +47,7 @@ function Sort({ value, onClickSortType }) {
               <li
                 key={index}
                 onClick={() => onClickPoputItem(obj)}
-                className={value.sort === obj.sortProperty ? 'active' : ''}>
+                className={sortType.sortProperty === obj.sortProperty ? 'active' : ''}>
                 {obj.name}
               </li>
             ))}
@@ -50,6 +56,6 @@ function Sort({ value, onClickSortType }) {
       )}
     </div>
   );
-}
+};
 
 export default Sort;

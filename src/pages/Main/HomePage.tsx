@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getPizzas } from '../../redux/pizza/slice';
 import { setCategoryId, setCurrentPage, setSort } from '../../redux/filter/slice';
 import Categories from '../../components/Categories';
@@ -8,26 +8,28 @@ import Sort from '../../components/Sort';
 import PizzaBlock from '../../components/PizzaBlock';
 import Skeleton from '../../components/PizzaBlock/Skeleton';
 
+import { SortType } from '../../redux/filter/types';
+
 import Pagination from '../../components/Pagination';
 
-const Main = () => {
-  const dispatch = useDispatch();
+const Main: React.FC = () => {
+  const dispatch = useAppDispatch();
 
-  const items = useSelector((state) => state.pizzas.items);
-  const isLoading = useSelector((state) => state.pizzas.status);
-  const currentPage = useSelector((state) => state.filter.currentPage);
-  const categoryId = useSelector((state) => state.filter.categoryId);
-  const sortType = useSelector((state) => state.filter.sort);
-  const searchValue = useSelector((state) => state.filter.searchValue);
+  const items = useAppSelector((state) => state.pizzas.items);
+  const isLoading = useAppSelector((state) => state.pizzas.status);
+  const currentPage = useAppSelector((state) => state.filter.currentPage);
+  const categoryId = useAppSelector((state) => state.filter.categoryId);
+  const sortType = useAppSelector((state) => state.filter.sort);
+  const searchValue = useAppSelector((state) => state.filter.searchValue);
 
-  const CurrentPage = (i) => {
-    dispatch(setCurrentPage(i));
+  const CurrentPage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
-  const CategoryId = (i) => {
-    dispatch(setCategoryId(i));
+  const CategoryId = (categoryId: number) => {
+    dispatch(setCategoryId(categoryId));
   };
-  const SortType = (i) => {
-    dispatch(setSort(i));
+  const SortType = (sort: SortType) => {
+    dispatch(setSort(sort));
   };
 
   React.useEffect(() => {
@@ -61,13 +63,16 @@ const Main = () => {
     <div className="content">
       <div className="container">
         <div className="content__top">
-          <Categories value={categoryId} onClickCategory={(i) => CategoryId(i)} />
-          <Sort value={sortType} onClickSortType={(i) => SortType(i)} />
+          <Categories
+            categoryId={categoryId}
+            onClickCategory={(categoryId: number) => CategoryId(categoryId)}
+          />
+          <Sort sortType={sortType} onClickSortType={(sort: SortType) => SortType(sort)} />
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">{isLoading ? skeletons : pizzas}</div>
       </div>
-      <Pagination setCurrentPage={CurrentPage} />
+      <Pagination currentPage={currentPage} setCurrentPage={CurrentPage} />
     </div>
   );
 };

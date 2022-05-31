@@ -1,9 +1,10 @@
-import React from 'react';
-import { CartItem } from './CartItem';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks';
 import { selectCart } from '../../redux/cart/selectors';
-const CartList = () => {
-  const { items } = useSelector(selectCart);
+
+import { CartItem } from './CartItem';
+
+const CartList: React.FC = () => {
+  const { items } = useAppSelector(selectCart);
 
   return (
     <div className="content__items">

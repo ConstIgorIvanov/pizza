@@ -1,13 +1,12 @@
-import React from 'react';
+import { useAppSelector } from '../../hooks';
 
 import CartBottom from './CartBottom';
 import CartList from './CartList';
 import CartTop from './CartTop';
 import CartEmpty from './CartEmpty';
-import { useSelector } from 'react-redux';
 
 const Cart = () => {
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const totalPrice = useAppSelector((state) => state.cart.totalPrice);
   if (!totalPrice) {
     return <CartEmpty />;
   }

@@ -1,10 +1,27 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../hooks';
 
 import { plusItem, minusItem, removeItem } from '../../redux/cart/slice';
 
-export const CartItem = ({ id, title, imageUrl, price, sizes, types, count }) => {
-  const dispatch = useDispatch();
+interface CartItemProps {
+  id: number;
+  title: string;
+  type: string;
+  size: number;
+  price: number;
+  count: number;
+  imageUrl: string;
+}
+
+export const CartItem: React.FC<CartItemProps> = ({
+  id,
+  title,
+  imageUrl,
+  price,
+  size,
+  type,
+  count,
+}) => {
+  const dispatch = useAppDispatch();
 
   return (
     <div className="cart__item">
@@ -14,7 +31,7 @@ export const CartItem = ({ id, title, imageUrl, price, sizes, types, count }) =>
       <div className="cart__item-info">
         <h3>{title}</h3>
         <p>
-          {types} тесто, {sizes} см.
+          {type} тесто, {size} см.
         </p>
       </div>
       <div className="cart__item-count">

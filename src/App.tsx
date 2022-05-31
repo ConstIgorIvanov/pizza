@@ -1,15 +1,15 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import HomePage from './pages/Main/HomePage';
 import CartPage from './pages/CartPage/CartPage';
 import Layout from './components/Layout';
 import NotFound from './pages/NotFound';
+
 import { ContexProvider } from './hoc/ContexProvider';
 
 import './scss/app.scss';
 
-function App() {
+const App: React.FC = () => {
   return (
     <ContexProvider>
       <Routes>
@@ -21,6 +21,6 @@ function App() {
       </Routes>
     </ContexProvider>
   );
-}
+};
 
 export default App;

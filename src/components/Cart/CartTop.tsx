@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../hooks';
 
 import { clearItems } from '../../redux/cart/slice';
 
-const CartTop = () => {
-  const dispatch = useDispatch();
+const CartTop: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <div className="cart__top">
       <h2 className="content__title">

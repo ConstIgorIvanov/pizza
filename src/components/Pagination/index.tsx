@@ -3,7 +3,12 @@ import ReactPaginate from 'react-paginate';
 
 import styles from './Pagination.module.scss';
 
-const Pagination = ({ setCurrentPage }) => {
+interface PaginationProps {
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({ currentPage, setCurrentPage }) => {
   return (
     <ReactPaginate
       className={styles.root}
@@ -13,7 +18,7 @@ const Pagination = ({ setCurrentPage }) => {
       pageRangeDisplayed={8}
       pageCount={3} //mokapi не возвращает кол-во страниц
       previousLabel="<"
-      renderOnZeroPageCount={null}
+      forcePage={currentPage - 1}
     />
   );
 };

@@ -1,9 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks';
+
 import { selectCart } from '../../redux/cart/selectors';
+
 const CartBottom = () => {
-  const { totalPrice, items } = useSelector(selectCart);
+  const { totalPrice, items } = useAppSelector(selectCart);
   return (
     <div className="cart__bottom">
       <div className="cart__bottom-details">
