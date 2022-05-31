@@ -1,3 +1,3 @@
-Pizzas
+Pizza shop
 
 TS, RTK, Contex
