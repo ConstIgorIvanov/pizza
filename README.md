@@ -1,3 +1,3 @@
 Pizza shop
 
-TS, RTK, Contex
+TS, RTK
