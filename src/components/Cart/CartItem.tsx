@@ -38,7 +38,9 @@ export const CartItem: React.FC<CartItemProps> = ({
         <button
           disabled={count < 2}
           onClick={() => dispatch(minusItem(id))}
-          className="button button--outline button--circle cart__item-count-minus">
+          className={`button button--outline button--circle cart__item-count-minus ${
+            count < 2 ? 'button--disabled' : ''
+          }`}>
           <svg
             width="10"
             height="10"
